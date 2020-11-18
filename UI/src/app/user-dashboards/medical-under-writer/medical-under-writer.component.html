@@ -1,0 +1,134 @@
+<!-- Content Row -->
+<!-- <div class="row">
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2 clickable" (click)="getRequestedUsers(2)">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Active Requests</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{activeRequests}}</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fa fa-calendar fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2 clickable" (click)="getRequestedUsers(6)">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Cancelled Requests</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{cancelledRequests}}</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fa fa-calendar fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-success shadow h-100 py-2 clickable" (click)="getRequestedUsers(5)">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Offers created</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{offersCreated}}</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fa fa-file fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-warning shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Worth Transactions
+                            Occured</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">1,46,000</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fa fa-comments fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<div class="row mt-2">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-6">
+                        <app-page-heading [title]="policyStatus"></app-page-heading>
+                    </div>
+                    <div class="col-6">
+                        <app-search (search)="searchBasedOnTerms($event)"></app-search>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body" *ngIf="policies && policies.length > 0; else noDataFound">
+                <div class="table-responsive mb-3 mt-3">
+                    <!-- TABLE  -->
+                    <table class="table tableTheme table-bordered">
+                        <thead class="table-primary text-dark">
+                            <tr>
+                                <th>Policy Owner Name</th>
+                                <th>Date Of Birth</th>
+                                <th>Email</th>
+                                <th>Policy Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let data of policies">
+                                <td>{{ data.policyOwnerName }}</td>
+                                <td>{{ data.policyOwnerDob | date: 'MM/dd/yyyy' }}</td>
+                                <td>{{ data.policyOwnerEmail }}</td>
+                                <td>{{ data.statusName }}</td>
+                                <td>
+                                    <a (click)="downloadPolicyDocument(data._id, 'ownerKycDocument')" title="Download KYC Document">
+                                        <i class="fa fa-download"></i>
+                                    </a> &nbsp;
+                                    <span *ngIf="data.processedByUnderwriter">
+                                        <button type="button" class="btn btn-success btn-sm mr-1"
+                                            [disabled]="true">Action Performed</button>
+                                    </span>
+                                    <span *ngIf="!data.processedByUnderwriter">
+                                        <button type="button" class="btn btn-success btn-sm mr-1"
+                                            (click)="approveAndSendMedicalReport(data)">Update Report</button>
+                                        <button type="button" class="btn btn-danger btn-sm ml-1"
+                                            (click)="reject(data)">Reject
+                                        </button>
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- /TABLE -->
+                </div>
+
+                <app-paginator [itemsPerPage]="limit" [paginationData]="paginationData"
+                    (page)="getResultsByPage($event)"></app-paginator>
+            </div>
+            <!-- /col -->
+            <ng-template #noDataFound>
+                <div class="col">
+                    <app-no-data-found [message]="'No Policy Present Yet'"></app-no-data-found>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+</div>

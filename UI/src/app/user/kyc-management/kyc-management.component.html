@@ -1,0 +1,83 @@
+<!-- <div class="row">
+    <div class="col-6 col-xs-12">
+        <app-page-heading [title]="'Manage KYC'"></app-page-heading>
+    </div>
+</div> -->
+
+<!-- Content Row -->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-6">
+                        <app-page-heading [title]="'Manage KYC'"></app-page-heading>
+                    </div>
+                    <div class="col-6">
+                        <app-search (search)="searchBasedOnTerms($event)"></app-search>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body" *ngIf="users && users.length > 0; else noDataFound">
+                <div class="table-responsive mb-3 mt-3">
+                    <!-- TABLE  -->
+                    <table class="table tableTheme table-bordered">
+                        <thead class="table-primary text-dark">
+                            <tr>
+                                <!-- <th>ID</th> -->
+                                <th>Name</th>
+                                <th>User Type</th>
+                                <th>Email</th>
+                                <th>Documents</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let user of users">
+                                <!-- <td>{{ user._id }}</td> -->
+                                <!-- <td>{{ user.firstName }}</td> -->
+                                <td>{{ user.name }}</td>
+                                <td>{{ user.userTypeName }}</td>
+                                <td>{{ user.email }}</td>
+                                <td>
+                                    <span *ngIf="user.userType == 5 || user.userType == 6">
+                                        <a (click)="downloadKycDocument(user._id, 'kycDocument')"
+                                            title="Download Document">ID Proof</a>
+                                    </span>
+                                </td>
+                                <td *ngIf="!user.kycChecked; else kycDone">
+                                    <button type="button" class="btn btn-success btn-sm mr-1"
+                                        (click)="acceptKyc(user)">Approve User</button>
+
+                                    <button type="button" class="btn btn-danger btn-sm ml-1"
+                                        (click)="removeKyc(user)">Reject
+                                        User</button>
+                                </td>
+                                <ng-template #kycDone>
+                                    <td *ngIf="user.isActive; else notActive">
+                                        <span class="badge badge-success p-2">Approved</span>
+                                    </td>
+                                    <ng-template #notActive>
+                                        <td>
+                                            <span class="badge badge-danger p-2">Rejected</span>
+                                        </td>
+                                    </ng-template>
+                                </ng-template>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- /TABLE -->
+                </div>
+
+                <app-paginator [itemsPerPage]="limit" [paginationData]="paginationData"
+                    (page)="getResultsByPage($event)"></app-paginator>
+            </div>
+            <!-- /col -->
+            <ng-template #noDataFound>
+                <div class="col">
+                    <app-no-data-found [message]="'No User Added Yet'"></app-no-data-found>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+</div>

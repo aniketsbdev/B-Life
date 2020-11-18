@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>{{ data.title ? data.title : "Confirmation" }}</h1>
+<div mat-dialog-content>
+  <p>{{ data.message ? data.message : "Confirmation" }}</p>
+</div>
+<div mat-dialog-actions>
+  <button class="mat-button-basic" mat-raised-button (click)="onCancel()">
+    {{ data.cancelButtonText ? data.cancelButtonText : "No" }}
+  </button>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="onConfirm()"
+    cdkFocusInitial
+  >
+    {{ data.confirmButtonText ? data.confirmButtonText : "Yes" }}
+  </button>
+</div>

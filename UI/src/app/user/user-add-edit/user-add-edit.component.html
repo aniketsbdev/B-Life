@@ -1,0 +1,256 @@
+<div class="row">
+  <div class="col-6 col-xs-12">
+    <app-page-heading [title]="'User Management'"></app-page-heading>
+  </div>
+  <div class="col-6 col-xs-12">
+    <button class="btn btn-primary float-right" (click)="routeToList()">Back to List</button>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <div class="card bluePanelHeader">
+      <div class="card-body">
+        <form class="w-100" [formGroup]="form" (submit)="addUpdateUser()">
+          <app-form-error-message [errorMessage]="errorMessage"></app-form-error-message>
+          <div class="form-row">
+
+            <div class="form-group col-4 mb-3">
+              <label for="fname">First Name <span class="text-danger">*</span></label>
+              <div class="w-100">
+                <app-extended-form-control [formSubmitted]="submitted" [inputErrors]="form.controls.firstName.errors"
+                  [errorDefs]="errorDefs['firstName']">
+                  <input type="text" class="form-control w-75" placeholder="First Name" id="fname"
+                    formControlName="firstName" />
+                </app-extended-form-control>
+              </div>
+            </div>
+
+            <div class="form-group col-4 mb-3">
+              <label for="lname">Last Name <span class="text-danger">*</span></label>
+              <div class="w-100">
+                <app-extended-form-control [formSubmitted]="submitted" [inputErrors]="form.controls.lastName.errors"
+                  [errorDefs]="errorDefs['lastName']">
+                  <input type="text" class="form-control w-75" placeholder="Last Name" id="lname"
+                    formControlName="lastName" />
+                </app-extended-form-control>
+              </div>
+            </div>
+
+            <div class="form-group col-4 mb-3">
+              <label for="email">Email <span class="text-danger">*</span></label>
+              <div class="w-100">
+                <app-extended-form-control [formSubmitted]="submitted" [inputErrors]="form.controls.email.errors"
+                  [errorDefs]="errorDefs['email']">
+                  <input type="text" class="form-control w-75" placeholder="Email Id" id="email"
+                    formControlName="email" />
+                </app-extended-form-control>
+              </div>
+            </div>
+
+            <div class="form-group col-4 mb-3">
+              <label for="userType" class="">User Type <span class="text-danger">*</span>
+              </label>
+              <div class="w-100">
+                <app-extended-form-control [formSubmitted]="submitted" [inputErrors]="form.controls.userType.errors"
+                  [errorDefs]="errorDefs['userType']">
+                  <select class="form-control w-75" id="userType" (change)="userTypeChanged($event.target.value)"
+                    formControlName="userType">
+                    <option [value]="null">Account Type</option>
+                    <option *ngFor="let type of accountTypes" [value]="type.id">{{ type.name }}</option>
+                  </select>
+                </app-extended-form-control>
+              </div>
+            </div>
+
+            <div class="form-group col-4 mb-3">
+              <label for="company">Select Organisation
+                <span *ngIf="!dobRequired" class="text-danger">*</span>
+              </label>
+              <div class="w-100">
+                <app-extended-form-control [formSubmitted]="submitted" [inputErrors]="form.controls.company.errors"
+                  [errorDefs]="errorDefs['company']">
+                  <select class="form-control w-75" id="company" formControlName="company">
+                    <option [value]="null">Organisation Name</option>
+                    <option *ngFor="let company of availableCompanies" [value]="company._id">{{ company.name }}
+                    </option>
+                  </select>
+                </app-extended-form-control>
+              </div>
+            </div>
+
+            <div class="form-group col-4 mb-3">
+              <label for="email">Date Of Birth
+                <span *ngIf="dobRequired" class="text-danger">*</span>
+              </label>
+              <div class="w-100">
+                <app-extended-form-control [formSubmitted]="submitted" [inputErrors]="form.controls.dateOfBirth.errors"
+                  [errorDefs]="errorDefs['dateOfBirth']">
+                  <div class="input-group w-75">
+                    <input [matDatepicker]="picker" [max]="maxDate" id="dateOfBirth" type="text" class="form-control"
+                      placeholder="(mm/dd/yyyy)" formControlName="dateOfBirth" />
+                    <mat-datepicker #picker></mat-datepicker>
+                    <div class="input-group-append">
+                      <span class="input-group-text btn" (click)="picker.open()"><i class="fa fa-calendar"></i></span>
+                    </div>
+                  </div>
+                </app-extended-form-control>
+              </div>
+            </div>
+
+            <div *ngIf="selectedUser === 'Medical Underwriter'" class="form-group col-4 mb-3">
+              <label for="ssn">SSN <span class="text-danger">*</span></label>
+              <div class="w-100">
+                <app-extended-form-control [formSubmitted]="submitted" [inputErrors]="form.controls.ssn.errors"
+                  [errorDefs]="errorDefs['ssn']">
+                  <input type="text" class="form-control w-75" placeholder="SSN" id="ssn" formControlName="ssn" />
+                </app-extended-form-control>
+              </div>
+            </div>
+
+            <div class="form-group col-4 mb-3">
+              <label for="password">Password <span class="text-danger">*</span></label>
+              <div class="w-100">
+                <app-extended-form-control [formSubmitted]="submitted" [inputErrors]="form.controls.password.errors"
+                  [errorDefs]="errorDefs['password']">
+                  <input type="password" class="form-control w-75" placeholder="Password"
+                    tooltip="Please enter atleast 8 characters with combination of one upper case character, one lower case character, one special character and one number."
+                    id="password" formControlName="password" />
+                </app-extended-form-control>
+              </div>
+            </div>
+
+            <div class="form-group col-4 mb-3">
+              <label for="password">Confirm Password <span class="text-danger">*</span></label>
+              <div class="w-100">
+                <app-extended-form-control [formSubmitted]="submitted"
+                  [inputErrors]="form.controls.confirmPassword.errors" [errorDefs]="errorDefs['confirmPassword']">
+                  <input type="password" class="form-control w-75" placeholder="Confirm Password" id="confirmPw"
+                    formControlName="confirmPassword" />
+                </app-extended-form-control>
+              </div>
+            </div>
+
+            <!-- <div class="form-group col-4 mb-3">
+              <label for="lspOrgId">LSP Org. ID</label>
+              <div class="w-100">
+                <app-extended-form-control [formSubmitted]="submitted" [inputErrors]="form.controls.lspOrgId.errors"
+                  [errorDefs]="errorDefs['lspOrgId']">
+                  <input type="text" class="form-control w-75" placeholder="Organisation ID" id="lspOrgId"
+                    formControlName="lspOrgId" />
+                </app-extended-form-control>
+              </div>
+            </div> -->
+
+            <div class="form-group col-4 mb-3">
+              <label for="licenseNumber">License Number
+                <span class="text-danger">*</span>
+              </label>
+              <div class="w-100">
+                <app-extended-form-control [formSubmitted]="submitted"
+                  [inputErrors]="form.controls.licenseNumber.errors" [errorDefs]="errorDefs['licenseNumber']">
+                  <input type="text" class="form-control w-75" placeholder="License Number" id="licenseNumber"
+                    formControlName="licenseNumber" />
+                </app-extended-form-control>
+              </div>
+            </div>
+
+            <div class="form-group col-4 mb-3">
+              <label for="contactNumber">Number</label>
+              <div class="w-100">
+                <app-extended-form-control [formSubmitted]="submitted"
+                  [inputErrors]="form.controls.contactNumber.errors" [errorDefs]="errorDefs['contactNumber']">
+                  <input type="text" class="form-control w-75" placeholder="Contact Number" id="contactNumber"
+                    formControlName="contactNumber" />
+                </app-extended-form-control>
+              </div>
+            </div>
+
+            <div class="form-group col-4 mb-3">
+              <label for="address1">Address 1</label>
+              <div class="w-100">
+                <app-extended-form-control [formSubmitted]="submitted" [inputErrors]="form.controls.address1.errors"
+                  [errorDefs]="errorDefs['address1']">
+                  <input type="text" class="form-control w-75" placeholder="Address" id="address1"
+                    formControlName="address1" />
+                </app-extended-form-control>
+              </div>
+            </div>
+
+            <div class="form-group col-4 mb-3">
+              <label for="address2">Address 2</label>
+              <div class="w-100">
+                <app-extended-form-control [formSubmitted]="submitted" [inputErrors]="form.controls.address2.errors"
+                  [errorDefs]="errorDefs['address2']">
+                  <input type="text" class="form-control w-75" placeholder="Address" id="address2"
+                    formControlName="address2" />
+                </app-extended-form-control>
+              </div>
+            </div>
+
+            <div class="form-group col-4 mb-3">
+              <label for="city">City</label>
+              <div class="w-100">
+                <app-extended-form-control [formSubmitted]="submitted" [inputErrors]="form.controls.city.errors"
+                  [errorDefs]="errorDefs['city']">
+                  <input type="text" class="form-control w-75" placeholder="City" id="city" formControlName="city" />
+                </app-extended-form-control>
+              </div>
+            </div>
+
+            <div class="form-group col-4 mb-3">
+              <label for="county">County</label>
+              <div class="w-100">
+                <app-extended-form-control [formSubmitted]="submitted" [inputErrors]="form.controls.county.errors"
+                  [errorDefs]="errorDefs['county']">
+                  <input type="text" class="form-control w-75" placeholder="County" id="county"
+                    formControlName="county" />
+                </app-extended-form-control>
+              </div>
+            </div>
+
+            <div class="form-group col-4 mb-3">
+              <label for="zipCode">Zip</label>
+              <div class="w-100">
+                <app-extended-form-control [formSubmitted]="submitted" [inputErrors]="form.controls.zipCode.errors"
+                  [errorDefs]="errorDefs['zipCode']">
+                  <input type="text" class="form-control w-75" placeholder="Zip Code" id="zipCode"
+                    formControlName="zipCode" />
+                </app-extended-form-control>
+              </div>
+            </div>
+
+            <div class="form-group col-4 mb-3">
+              <label for="state">State</label>
+              <div class="w-100">
+                <app-extended-form-control [formSubmitted]="submitted" [inputErrors]="form.controls.state.errors"
+                  [errorDefs]="errorDefs['state']">
+                  <input type="text" class="form-control w-75" placeholder="State" id="state" formControlName="state" />
+                </app-extended-form-control>
+              </div>
+            </div>
+
+            <div class="form-group col-4 mb-3">
+              <label for="country">Country</label>
+              <div class="w-100">
+                <app-extended-form-control [formSubmitted]="submitted" [inputErrors]="form.controls.country.errors"
+                  [errorDefs]="errorDefs['country']">
+                  <input type="text" class="form-control w-75" placeholder="Country" id="country"
+                    formControlName="country" />
+                </app-extended-form-control>
+              </div>
+            </div>
+
+          </div>
+          <div>
+            <button type="submit" [disabled]="isRequestPending" class="btn btn-primary bg-lightBlue mx-1 btn-save">
+              <i *ngIf="buttonType == 'Add'" class="fa fa-plus"></i>
+              <i *ngIf="buttonType == 'Edit'" class="fa fa-edit"></i>
+              &nbsp; {{ buttonType }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

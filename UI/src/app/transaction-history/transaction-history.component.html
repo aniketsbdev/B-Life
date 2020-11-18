@@ -1,0 +1,63 @@
+<app-page-heading [title]="'Transaction History'"></app-page-heading>
+
+<div class="row mt-2">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-6 offset-6">
+                        <!-- <app-search (search)="searchBasedOnTerms($event)"></app-search> -->
+                    </div>
+                </div>
+            </div>
+            <div class="card-body" *ngIf="transactions && transactions.length > 0; else noDataFound">
+                <div class="table-responsive mb-3 mt-3">
+                    <!-- TABLE  -->
+                    <table class="table tableTheme table-bordered">
+                        <thead class="table-primary text-dark">
+                            <tr>
+                                <th>Trasaction Type</th>
+                                <th>Transaction Value</th>
+                                <th>Transaction Done On</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let transaction of transactions">
+                                <td>
+                                    <span *ngIf="transaction.typeOfTransaction == 1">
+                                        Credited
+                                    </span>
+                                    <span *ngIf="transaction.typeOfTransaction == 2">
+                                        Debited
+                                    </span>
+                                </td>
+                                <td>
+                                    <span *ngIf="transaction.typeOfTransaction == 1"
+                                        class="text-success font-weight-bold">
+                                         &nbsp;$ {{ transaction.amount }}
+                                    </span>
+                                    <span *ngIf="transaction.typeOfTransaction == 2"
+                                        class="text-danger font-weight-bold">
+                                        &nbsp;$ {{ transaction.amount }}
+                                    </span>
+                                </td>
+                                <td>
+                                    {{ transaction.createdAt | date: 'short' }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- /TABLE -->
+                </div>
+
+                <app-paginator [itemsPerPage]="limit" [paginationData]="paginationData"
+                    (page)="getResultsByPage($event)"></app-paginator>
+            </div>
+            <!-- /col -->
+            <ng-template #noDataFound>
+                <div class="col">
+                    <app-no-data-found [message]="'No Transaction Done Yet'"></app-no-data-found>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+</div>

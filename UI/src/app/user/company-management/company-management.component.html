@@ -1,0 +1,64 @@
+<div class="row">
+    <!-- <div class="col-6 col-xs-12">
+        <app-page-heading [title]="'Organisations List'"></app-page-heading>
+    </div> -->
+    <div class="col-12 col-xs-12 mb-2">
+        <button class="btn btn-primary float-right" (click)="addNewCompany()">Add Organisation</button>
+    </div>
+</div>
+
+<!-- Content Row -->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-6">
+                        <app-page-heading [title]="'Manage Organisations'"></app-page-heading>
+                    </div>
+                    <div class="col-6">
+                        <app-search (search)="searchBasedOnTerms($event)"></app-search>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body" *ngIf="companies && companies.length > 0; else noDataFound">
+                <div class="table-responsive mb-3 mt-3">
+                    <!-- TABLE  -->
+                    <table class="table tableTheme table-bordered">
+                        <thead class="table-primary text-dark">
+                            <tr>
+                                <!-- <th>ID</th> -->
+                                <th>Name</th>
+                                <th>Organisation Type</th>
+                                <th>License Number</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let company of companies">
+                                <td>{{ company.name }}</td>
+                                <td>{{ company.companyType }}</td>
+                                <td>{{ company.licenseNumber }}</td>
+                                <td>
+                                    <a (click)="goToEditCompany(company)" title="Edit Organisation">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- /TABLE -->
+                </div>
+
+                <app-paginator [itemsPerPage]="limit" [paginationData]="paginationData"
+                    (page)="getResultsByPage($event)"></app-paginator>
+            </div>
+            <!-- /col -->
+            <ng-template #noDataFound>
+                <div class="col">
+                    <app-no-data-found [message]="'No Organisation Added Yet'"></app-no-data-found>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+</div>

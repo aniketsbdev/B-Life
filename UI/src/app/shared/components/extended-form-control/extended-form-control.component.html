@@ -1,0 +1,6 @@
+<div [ngClass]="{ 'has-error': errorFound }">
+  <ng-content></ng-content>
+<span class="invalid-feedback" *ngIf="errorMessage">
+  {{errorMessage}}
+</span>
+</div>

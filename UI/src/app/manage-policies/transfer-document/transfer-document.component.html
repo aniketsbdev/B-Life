@@ -1,0 +1,44 @@
+<!-- Content Row -->
+<div class="row">
+    <div class="col-12">
+        <div class="card bluePanelHeader">
+            <!-- card header -->
+            <div class="card-header">
+              <div class="pull-left">
+                <h3>Transfer Document</h3>
+              </div>
+            </div>
+            <!-- /card header -->
+            <div class="card-body">
+                <form class="w-100" [formGroup]="form" (submit)="submit()">
+                    <app-form-error-message [errorMessage]="errorMessage"></app-form-error-message>
+                    <div class="form-row">
+                        <div class="form-group col-6 mb-3">
+                            <label for="updatedPolicyDocument">Transfer Document</label>
+                            <div class="w-100">
+                                <app-extended-form-control [formSubmitted]="submitted"
+                                    [inputErrors]="form.controls.updatedPolicyDocument.errors"
+                                    [errorDefs]="errorDefs['updatedPolicyDocument']">
+                                    <div class="fileUpload form-control">
+                                        <input type="file" (change)="policyFileUpload($event.target.files)"
+                                            formControlName="updatedPolicyDocument" id="updatedPolicyDocument" />
+                                    </div>
+                                </app-extended-form-control>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fa fa-plus"></i> Update
+                            </button>
+                            <button mat-dialog-close class="btn btn-secondary float-right">
+                                 Close
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+<div *ngIf="message" title="Click to hide" class="row">
+  <div class="col-md-12">
+    <div
+      [ngClass]="{
+        errorMessage: type === 'error',
+        successMessage: type === 'success'
+      }"
+      class="alert bg-gray text-center py-2"
+    >
+      {{ message }}
+      <span class="close" (click)="hideMessage()"
+        ><i class="fa fa-times" aria-hidden="true"></i
+      ></span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 20%;
+  float: right;
+  padding-right: 1%;
+}
+
+td,
+th {
+  width: 25%;
+}
+
+.addUserButton {
+  float: right;
+  margin: 1% 1% 0 0;
+}
+
+span a {
+  color: #1248eb !important;
+}

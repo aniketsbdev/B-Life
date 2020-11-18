@@ -1,0 +1,36 @@
+<!-- Sidebar -->
+<nav [class.d-none]="!showSideNav" class="navbar-nav bg-light sidebar sidebar-dark accordion" id="accordionSidebar">
+
+  <div style="height: 90%;">
+
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" routerLink="/dashboard">
+      <!-- <div class="sidebar-brand-icon rotate-n-15">
+      <i class="fa fa-laugh-wink"></i>
+    </div> -->
+      <div class="sidebar-brand-image text-dark mx-3">
+        <img src="../../../../assets/img/brand/blife_small.png" class="img-fluid" alt="Responsive image">
+      </div>
+    </a>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider mb-2 bg-dark my-0">
+
+    <li *ngFor="let menuItem of menuItems" class="nav-item" routerLinkActive="active">
+      <a routerLink="{{menuItem.route}}" class="nav-link text-dark">
+        <i class="{{ menuItem.icon }} text-dark mr-3"></i>
+        <span>{{ menuItem.title }}</span>
+      </a>
+    </li>
+
+  </div>
+
+  <footer class="sticky-footer bg-white mt-2">
+    <div class="container my-auto">
+      <div class="copyright text-center my-auto">
+        <span>Copyright &copy; B-Life 2020</span>
+      </div>
+    </div>
+  </footer>
+</nav>
+<!-- End of Sidebar -->

@@ -1,0 +1,95 @@
+/* You can add global styles to this file, and also import other style files */
+@import "./assets/css/sb-admin-2.min.css";
+
+.has-error .invalid-feedback {
+  display: block;
+}
+
+.errorMessage {
+  color: red;
+}
+.alert.errorMessage {
+  color: red;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}
+.successMessage {
+  color: #3c763d;
+  margin-bottom: 10px;
+}
+.alert.successMessage {
+  color: #3c763d;
+  background-color: #dff0d8;
+  border-color: #d0e9c6;
+  margin-bottom: 10px;
+}
+.alert.errorMessage,
+.alert.successMessage {
+  font-size: 14px;
+}
+.alert span.close {
+  opacity: 1;
+  line-height: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 5px;
+  cursor: pointer;
+}
+.alert .fa.fa-times {
+  background: transparent !important;
+  box-shadow: none;
+}
+.alert.successMessage .fa {
+  color: #3c763d;
+}
+.alert.errorMessage .fa {
+  color: red;
+}
+
+.table tbody th {
+  font-size: 0.8rem !important;
+}
+
+table {
+  color: #404040 !important;
+}
+
+/* .form-group {
+  margin-bottom: 0;
+} */
+
+.spinner-button {
+  color: aliceblue !important;
+  margin-left: 5px !important;
+  float: right !important;
+  position: absolute;
+  top: 3px;
+}
+
+a {
+  cursor: pointer !important;
+}
+
+body {
+  background-color: #F0F0F0;
+  font-family: 'Helvetica' !important;
+  font-size: .8125rem !important;
+  font-weight: 400 !important;
+  }
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(36, 151, 151);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

@@ -1,0 +1,97 @@
+<div class="row">
+    <div class="col-6 col-xs-12">
+        <app-page-heading [title]="heading"></app-page-heading>
+    </div>
+</div>
+
+<!-- Content Row -->
+<div class="row">
+    <div class="col-12">
+        <div class="card bluePanelHeader">
+            <div class="card-body">
+                <form class="w-100" [formGroup]="form">
+                    <app-form-error-message [errorMessage]="errorMessage"></app-form-error-message>
+                    <div class="form-row">
+                        <div class="form-group col-6 mb-3">
+                            <label for="age">Age</label>
+                            <div class="w-100">
+                                <app-extended-form-control [formSubmitted]="submitted"
+                                    [inputErrors]="form.controls.age.errors" [errorDefs]="errorDefs['age']">
+                                    <input type="number" class="form-control" formControlName="age" />
+                                </app-extended-form-control>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-6 mb-3">
+                            <label for="faceValue">Face Value</label>
+                            <div class="w-100">
+                                <app-extended-form-control [formSubmitted]="submitted"
+                                    [inputErrors]="form.controls.faceValue.errors" [errorDefs]="errorDefs['faceValue']">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend w-100">
+                                            <span class="input-group-text text-dark" id="currency-addon">$</span>
+                                            <input type="number" class="form-control" formControlName="faceValue" />
+                                        </div>
+                                    </div>
+                                </app-extended-form-control>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-6 mb-3">
+                            <label for="lifeExpectancy">Life Expectancy</label>
+                            <div class="w-100">
+                                <app-extended-form-control [formSubmitted]="submitted"
+                                    [inputErrors]="form.controls.lifeExpectancy.errors"
+                                    [errorDefs]="errorDefs['lifeExpectancy']">
+                                    <input type="number" class="form-control" formControlName="lifeExpectancy" />
+                                </app-extended-form-control>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-6 mb-3">
+                            <label for="policyPayout">Policy Payout</label>
+                            <div class="w-100">
+                                <app-extended-form-control [formSubmitted]="submitted"
+                                    [inputErrors]="form.controls.policyPayout.errors"
+                                    [errorDefs]="errorDefs['policyPayout']">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend w-100">
+                                            <span class="input-group-text text-dark" id="currency-addon">$</span>
+                                            <input type="number" class="form-control" formControlName="policyPayout" />
+                                        </div>
+                                    </div>
+                                </app-extended-form-control>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-6 mb-3">
+                            <label for="annualPremium">Annual Premium</label>
+                            <div class="w-100">
+                                <app-extended-form-control [formSubmitted]="submitted"
+                                    [inputErrors]="form.controls.annualPremium.errors"
+                                    [errorDefs]="errorDefs['annualPremium']">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend w-100">
+                                            <span class="input-group-text text-dark" id="currency-addon">$</span>
+                                            <input type="number" class="form-control" formControlName="annualPremium" />
+                                        </div>
+                                    </div>
+                                </app-extended-form-control>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col">
+                            <button type="button" (click)="checkEligibility()" class="btn btn-primary">
+                                Check Eligibility
+                            </button>
+                            <button type="button" (click)="estimatePolicy()" class="btn btn-primary ml-2">
+                                Estimate Policy
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

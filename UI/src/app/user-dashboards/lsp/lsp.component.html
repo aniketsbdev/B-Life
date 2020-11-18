@@ -1,0 +1,210 @@
+<!-- Content Row -->
+<div class="row">
+
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2 clickable" (click)="getRequestedUsers(2)">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="h2 font-weight-bold text-dark mb-1">
+                            {{ activeRequests }}
+                        </div>
+                        <div class="h6 mb-0 text-gray-600 text-uppercase">
+                            Active Requests
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fa fa-list fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-danger shadow h-100 py-2 clickable" (click)="getRequestedUsers(6)">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="h2 font-weight-bold text-dark mb-1">
+                            {{ cancelledRequests }}
+                        </div>
+                        <div class="h6 mb-0 text-gray-600 text-uppercase">
+                            Cancelled Requests
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fa fa-list fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-success shadow h-100 py-2 clickable" (click)="getRequestedUsers(5)">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="h2 font-weight-bold text-dark mb-1">
+                            {{ offersCreated }}
+                        </div>
+                        <div class="h6 mb-0 text-gray-600 text-uppercase">
+                            Offers created
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fa fa-list fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pending Requests Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-warning shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="h2 font-weight-bold text-dark mb-1">
+                             $146,000
+                        </div>
+                        <div class="h6 mb-0 text-gray-600 text-uppercase">
+                            Worth Transactions Occured
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fa fa-money fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-2">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-6">
+                        <app-page-heading [title]="policyStatus"></app-page-heading>
+                    </div>
+                    <div class="col-6">
+                        <app-search (search)="searchBasedOnTerms($event)"></app-search>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body" *ngIf="policies && policies.length > 0; else noDataFound">
+                <div class="table-responsive mb-3 mt-3">
+                    <!-- TABLE  -->
+                    <table class="table tableTheme table-bordered">
+                        <thead class="table-primary text-dark">
+                            <tr>
+                                <th>Policy Number</th>
+                                <th>Policy Owner</th>
+                                <th>Policy Start Date</th>
+                                <th>Annual Premium</th>
+                                <th>Policy Status</th>
+                                <th>{{actionHeader}}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let data of policies">
+                                <td>{{ data.policyNumber }}</td>
+                                <td>{{ data.policyOwnerName }}</td>
+                                <td>{{ data.policyStartDate }}</td>
+                                <td>$ {{ data.annualPremium }}</td>
+                                <td>{{ data.statusName }}</td>
+                                <td>
+                                    <a (click)="viewPolicy(data)" title="View Policy">
+                                        <i class="fa fa-eye"></i>
+                                    </a> &nbsp;
+                                    <span *ngIf="data.status == 3">
+                                        <button type="button" class="btn btn-success btn-sm mr-1"
+                                            [disabled]="data.status === 4 || data.status === 5"
+                                            (click)="acceptPolicyOffer(data)">Create Offer</button>
+                                        <button type="button" class="btn btn-danger btn-sm ml-1"
+                                            [disabled]="data.status === 4 || data.status === 5"
+                                            (click)="rejectPolicyOffer(data)">Reject </button>
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- /TABLE -->
+                </div>
+
+                <app-paginator [itemsPerPage]="limit" [paginationData]="paginationData"
+                    (page)="getResultsByPage($event)"></app-paginator>
+            </div>
+            <!-- /col -->
+            <ng-template #noDataFound>
+                <div class="col">
+                    <app-no-data-found [message]="'No Policy Present Yet'"></app-no-data-found>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="row">
+    <div class="col-12">
+        <div class="card shadow">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Active Requests</h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead class="table-primary text-dark">
+                            <tr>
+                                <th>Policy Number</th>
+                                <th>Policy Owner</th>
+                                <th>Broker Name</th>
+                                <th>Effective Date</th>
+                                <th>LE Status</th>
+                                <th>Policy Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let activeRequest of activeRequests">
+                                <th class="text-primary">{{ activeRequest.policy_number }}</th>
+                                <th>{{ activeRequest.policy_owner }}</th>
+                                <th>{{ activeRequest.broker_name }}</th>
+                                <th>{{ activeRequest.effective_date }}</th>
+                                <th>
+                                    <span *ngIf="activeRequest.le_status === 'attached'"
+                                        class="text-info">Attached</span>
+                                    <span *ngIf="activeRequest.le_status === 'in_progress'" class="text-warning">In
+                                        Progress</span>
+                                    <span *ngIf="activeRequest.le_status === 'created'"
+                                        class="text-secondary">Created</span>
+                                </th>
+                                <th>
+                                    <span *ngIf="activeRequest.policy_status === 'verified'"
+                                        class="text-success">Verified</span>
+                                    <span *ngIf="activeRequest.policy_status === 'pending_for_verification'"
+                                        class="text-warning">Pending for Verification</span>
+                                    <span *ngIf="activeRequest.policy_status === 'pending_for_updation'"
+                                        class="text-secondary">Pending for Updation</span>
+                                    <span *ngIf="activeRequest.policy_status === 'updated'"
+                                        class="text-info">Updated</span>
+                                </th>
+                                <th>
+                                    <button type="button" class="btn btn-success mr-1">Accept</button>
+                                    <button type="button" class="btn btn-danger">Reject</button>
+                                </th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->

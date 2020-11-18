@@ -1,0 +1,56 @@
+<!-- Content Row -->
+<div class="row">
+    <div class="col-12">
+        <div class="card bluePanelHeader">
+            <!-- card header -->
+            <div class="card-header">
+              <div class="pull-left">
+                <h3>Medical Reports</h3>
+              </div>
+            </div>
+            <!-- /card header -->
+            <div class="card-body">
+                <form class="w-100" [formGroup]="form" (submit)="submit()">
+                    <app-form-error-message [errorMessage]="errorMessage"></app-form-error-message>
+                    <div class="form-row">
+                        <div class="form-group col-6 mb-3">
+                            <label for="lifeExpectancy">Life Expectancy</label>
+                            <div class="w-100">
+                                <app-extended-form-control [formSubmitted]="submitted"
+                                    [inputErrors]="form.controls.lifeExpectancy.errors"
+                                    [errorDefs]="errorDefs['lifeExpectancy']">
+                                    <input id="lifeExpectancy" type="text" class="form-control"
+                                        placeholder="Life Expectancy" formControlName="lifeExpectancy" />
+                                </app-extended-form-control>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-6 mb-3">
+                            <label for="medicalDocument">Medical Document</label>
+                            <div class="w-100">
+                                <app-extended-form-control [formSubmitted]="submitted"
+                                    [inputErrors]="form.controls.medicalDocument.errors"
+                                    [errorDefs]="errorDefs['medicalDocument']">
+                                    <div class="fileUpload form-control">
+                                        <input type="file" (change)="policyFileUpload($event.target.files)"
+                                            formControlName="medicalDocument" id="medicalDocument" />
+                                    </div>
+                                </app-extended-form-control>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fa fa-plus"></i> Update
+                            </button>
+                            <button mat-dialog-close class="btn btn-secondary float-right">
+                                 Close
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

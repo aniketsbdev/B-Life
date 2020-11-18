@@ -1,0 +1,105 @@
+<div class="w-100 text-center my-2 px-3">
+  <h1>B-Life</h1>
+  <h4>Blockchain Based Life Settlement Platform</h4>
+</div>
+
+<form class="row mx-0" [formGroup]="form" (submit)="register()">
+  <div class="col-md-12 my-2">
+    <div class="form-group px-3">
+      <app-extended-form-control [formSubmitted]="submitted" [inputErrors]="form.controls.firstName.errors"
+        [errorDefs]="errorDefs['firstName']">
+        <input type="text" class="form-control" placeholder="First Name" id="firstName" formControlName="firstName" />
+      </app-extended-form-control>
+    </div>
+  </div>
+
+  <div class="col-md-12 my-2">
+    <div class="form-group px-3">
+      <app-extended-form-control [formSubmitted]="submitted" [inputErrors]="form.controls.lastName.errors"
+        [errorDefs]="errorDefs['lastName']">
+        <input type="text" class="form-control" placeholder="Last Name" id="lastName" formControlName="lastName" />
+      </app-extended-form-control>
+    </div>
+  </div>
+
+  <div class="col-md-12 my-2">
+    <div class="form-group px-3">
+      <app-extended-form-control [formSubmitted]="submitted" [inputErrors]="form.controls.userType.errors"
+        [errorDefs]="errorDefs['userType']">
+        <select class="form-control" id="userType" formControlName="userType">
+          <option [value]="null">Register As </option>
+          <option *ngFor="let type of accountTypes" [value]="type.id">{{ type.name }}</option>
+        </select>
+      </app-extended-form-control>
+    </div>
+  </div>
+
+  <div class="col-md-12 my-2">
+    <div class="form-group px-3">
+      <app-extended-form-control [formSubmitted]="submitted" [inputErrors]="form.controls.dateOfBirth.errors"
+        [errorDefs]="errorDefs['dateOfBirth']">
+        <div class="input-group">
+          <input [matDatepicker]="picker" [max]="maxDate" id="dateOfBirth" type="text" class="form-control"
+            placeholder="Date Of Birth (mm/dd/yyyy)" formControlName="dateOfBirth" />
+          <mat-datepicker #picker></mat-datepicker>
+          <div class="input-group-append">
+            <span class="input-group-text btn" (click)="picker.open()"><i class="fa fa-calendar"></i></span>
+          </div>
+        </div>
+      </app-extended-form-control>
+    </div>
+  </div>
+
+  <div class="col-md-12 my-2">
+    <div class="form-group px-3">
+      <app-extended-form-control [formSubmitted]="submitted" [inputErrors]="form.controls.email.errors"
+        [errorDefs]="errorDefs['email']">
+        <input type="text" class="form-control" placeholder="Email ID" id="email" formControlName="email" />
+      </app-extended-form-control>
+    </div>
+  </div>
+
+  <div class="col-md-12 my-2">
+    <div class="form-group px-3">
+      <app-extended-form-control [formSubmitted]="submitted" [inputErrors]="form.controls.password.errors"
+        [errorDefs]="errorDefs['password']">
+        <input type="password" class="form-control" placeholder="Password" id="password" formControlName="password" />
+      </app-extended-form-control>
+    </div>
+  </div>
+
+  <div class="col-md-12 my-2">
+    <div class="form-group px-3">
+      <app-extended-form-control [formSubmitted]="submitted" [inputErrors]="form.controls.confirmPassword.errors"
+        [errorDefs]="errorDefs['confirmPassword']">
+        <input type="password" class="form-control" placeholder="Confirm Password" id="confirmPassword"
+          formControlName="confirmPassword" />
+      </app-extended-form-control>
+    </div>
+  </div>
+
+  <div class="col-md-12 my-2">
+    <div class="form-group px-3">
+      <app-extended-form-control [formSubmitted]="submitted" [inputErrors]="form.controls.kycDocument.errors"
+        [errorDefs]="errorDefs['kycDocument']">
+        <label for="kycDocument">Upload KYC Document</label>
+        &nbsp; &nbsp;
+        <input type="file" formControlName="kycDocument" (change)="kycFileUpload($event.target.files)" id="kycDocument" />
+      </app-extended-form-control>
+    </div>
+  </div>
+
+  <div class="col-md-12 px-3" *ngIf="errorMessage">
+    <app-alerts [type]="'error'" [message]="errorMessage"></app-alerts>
+  </div>
+
+  <div class="col-md-12 pl-5 pr-5 mt-4">
+    <button class="btn btn-primary btn-block" type="submit">
+      REGISTER
+    </button>
+  </div>
+</form>
+
+<div class="w-100 text-center my-3">
+  Already a User? <button class="btn btn-secondary ml-1" (click)="login()">Login</button>
+</div>

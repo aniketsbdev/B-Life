@@ -1,0 +1,8 @@
+<!-- <app-page-heading [title]="'Home'"></app-page-heading> -->
+
+<app-user-list *ngIf="userType === 1"></app-user-list>
+<app-lsp *ngIf="userType === 2"></app-lsp>
+<app-insurer *ngIf="userType === 3"></app-insurer>
+<app-medical-under-writer *ngIf="userType === 4"></app-medical-under-writer>
+<app-broker *ngIf="userType === 5"></app-broker>
+<app-seller *ngIf="userType === 6"></app-seller>

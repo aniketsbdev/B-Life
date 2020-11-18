@@ -1,0 +1,88 @@
+<div class="row">
+    <div class="col-12 col-xs-12">
+        <button class="btn btn-primary float-right" routerLink="/policies/create/">Add Policy</button>
+    </div>
+</div>
+
+<!-- Content Row -->
+<div class="row mt-2">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-6">
+                        <app-page-heading [title]="'My Policies'"></app-page-heading>
+                    </div>
+                    <div class="col-6">
+                        <app-search (search)="searchBasedOnTerms($event)"></app-search>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body" *ngIf="policies && policies.length > 0; else noDataFound">
+                <div class="table-responsive mb-3 mt-3">
+                    <!-- TABLE  -->
+                    <table class="table tableTheme table-bordered">
+                        <thead class="table-primary text-dark">
+                            <tr>
+                                <th>Policy Number</th>
+                                <th>Face Value</th>
+                                <th>Policy Start Date</th>
+                                <th>Annual Premium</th>
+                                <th>Policy Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let data of policies">
+                                <td>{{ data.policyNumber }}</td>
+                                <td>$ {{ data.faceValue }}</td>
+                                <td>{{ data.policyStartDate }}</td>
+                                <td>$ {{ data.annualPremium }}</td>
+                                <td>{{ data.statusName }}</td>
+                                <td>
+                                    <a (click)="viewPolicy(data)" title="View Policy">
+                                        <i class="fa fa-eye"></i>
+                                    </a> &nbsp;
+                                    <span *ngIf="data.status == 1">
+                                        <a (click)="edit(data._id)" title="Edit Policy">
+                                            <i class="fa fa-edit"></i>
+                                        </a> &nbsp;
+                                        <button class="btn btn-success btn-sm" (click)="sellPolicy(data._id)">Sell
+                                            Policy</button>
+                                    </span>
+                                    <span *ngIf="data.status == 4">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <button class="btn btn-success btn-sm" (click)="acceptPolicyOffer(data)">Accept
+                                            Offer
+                                        </button> &nbsp;
+                                        <button class="btn btn-danger btn-sm" (click)="rejectPolicyOffer(data)">Reject
+                                            Offer
+                                        </button>
+                                    </span>
+                                    <span *ngIf="data.status == 7">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <button class="btn btn-success btn-sm" disabled>Policy Rejected
+                                        </button>
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- /TABLE -->
+                </div>
+
+                <app-paginator [itemsPerPage]="limit" [paginationData]="paginationData"
+                    (page)="getResultsByPage($event)"></app-paginator>
+            </div>
+            <!-- /col -->
+            <ng-template #noDataFound>
+                <div class="col">
+                    <app-no-data-found [message]="'No Policy Added Yet'"></app-no-data-found>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+    <div *ngIf="policyDocument" class="col-12 mt-3">
+        <object width="400px" height="400px" [data]="policyDocument"></object>
+    </div>
+</div>

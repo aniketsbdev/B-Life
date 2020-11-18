@@ -1,0 +1,135 @@
+<div class="row mb-2">
+
+    <div class="col-xl-4 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="h2 font-weight-bold text-dark mb-1">
+                            {{ userCount }}
+                        </div>
+                        <div class="h6 mb-0 text-gray-600 text-uppercase">
+                            Total Users
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fa fa-users fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-4 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="h2 font-weight-bold text-dark mb-1">
+                            {{ kycCount }}
+                        </div>
+                        <div class="h6 mb-0 text-gray-600 text-uppercase">
+                            KYC Requests
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fa fa-id-card-o fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-4 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="h2 font-weight-bold text-dark mb-1">
+                            25
+                        </div>
+                        <div class="h6 mb-0 text-gray-600 text-uppercase">
+                            Transactions Processed
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fa fa-files-o fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-12 col-xs-12">
+        <button class="btn btn-primary float-right" (click)="addNewUser()">Add User</button>
+    </div>
+</div>
+
+<!-- Content Row -->
+<div class="row mt-2">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-6">
+                        <app-page-heading [title]="'User Management'"></app-page-heading>
+                    </div>
+                    <div class="col-6">
+                        <app-search (search)="searchBasedOnTerms($event)"></app-search>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body" *ngIf="users && users.length > 0; else noDataFound">
+                <div class="table-responsive mb-3 mt-3">
+                    <!-- TABLE  -->
+                    <table class="table tableTheme table-bordered">
+                        <thead class="table-primary text-dark">
+                            <tr>
+                                <th>Name</th>
+                                <th>User Type</th>
+                                <th>State</th>
+                                <th>Contact Number</th>
+                                <th>Email</th>
+                                <th>Documents</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let user of users">
+                                <td>{{ user.name }}</td>
+                                <td>{{ user.userTypeName }}</td>
+                                <td>{{ user.state }}</td>
+                                <td>{{ user.contactNumber }}</td>
+                                <td>{{ user.email }}</td>
+                                <td>
+                                    <span  *ngIf="user.userType == 5 || user.userType == 6">
+                                        <a (click)="downloadKycDocument(user._id, 'kycDocument')"
+                                            title="Download Document">ID Proof</a>
+                                    </span>
+                                </td>
+                                <td><a (click)="goToEditUser(user)" title="Edit User">
+                                        <i class="fa fa-edit"></i>
+                                    </a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- /TABLE -->
+                </div>
+
+                <app-paginator [itemsPerPage]="limit" [paginationData]="paginationData"
+                    (page)="getResultsByPage($event)"></app-paginator>
+            </div>
+            <!-- /col -->
+            <ng-template #noDataFound>
+                <div class="col">
+                    <app-no-data-found [message]="'No User Added Yet'"></app-no-data-found>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+</div>

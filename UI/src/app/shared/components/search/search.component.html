@@ -1,0 +1,26 @@
+<div class="w-100">
+  <form [formGroup]="form" id="search">
+    <div class="form-group">
+      <app-extended-form-control [formSubmitted]="submitted" [inputErrors]="form.controls.query.errors"
+        [errorDefs]="errorDefs['query']">
+        <div class="row">
+          <div class="col-9 col-xs-12">
+            <div class="input-group">
+              <input type="text" id="query" placeholder="Search" class="form-control" formControlName="query" />
+              <div class="search-icon">
+                <button class="btn" (click)="searchResults(false)" type="submit">
+                  <i class="fa fa-search"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-3 col-xs-12">
+            <button type="button" (click)="searchResults(true)" class="btn btn-danger">
+              <i class="fa fa-times round"></i>
+            </button>
+          </div>
+        </div>
+      </app-extended-form-control>
+    </div>
+  </form>
+</div>

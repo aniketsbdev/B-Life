@@ -1,0 +1,41 @@
+<!-- <div class="row">
+    <div class="col-12">
+        <div class="card shadow">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">My Policies</h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead class="table-primary text-dark">
+                            <tr>
+                                <th>Policy Number</th>
+                                <th>Effective Date</th>
+                                <th>Face Value</th>
+                                <th>Policy Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let policy of myPolicies">
+                                <th class="text-primary">{{ policy.policy_number }}</th>
+                                <th>{{ policy.effective_date }}</th>
+                                <th>{{ policy.face_value }}</th>
+                                <th>
+                                    <span *ngIf="policy.status === 'in_progress'" class="text-warning">In
+                                        Progress</span>
+                                    <span *ngIf="policy.status === 'not_applicable'"
+                                        class="text-info">Not Applicable</span>
+                                </th>
+                                <th>
+                                    <button type="button" class="btn btn-success">Sell</button>
+                                </th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+<app-manage-policies></app-manage-policies>

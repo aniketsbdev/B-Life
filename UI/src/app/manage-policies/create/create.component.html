@@ -1,0 +1,272 @@
+<div class="row">
+    <div class="col-6 col-xs-12">
+        <app-page-heading [title]="heading"></app-page-heading>
+    </div>
+    <div class="col-6 col-xs-12">
+        <button class="btn btn-primary float-right" routerLink="/policies">Back to List</button>
+    </div>
+</div>
+
+<!-- Content Row -->
+<div class="row">
+    <div class="col-12">
+        <div class="card bluePanelHeader">
+            <!-- card header -->
+            <!-- <div class="card-header">
+              <div class="pull-left">
+                <h3>Announcement</h3>
+              </div>
+            </div> -->
+            <!-- /card header -->
+            <div class="card-body">
+                <form class="w-100" [formGroup]="form" (submit)="submit()">
+                    <app-form-error-message [errorMessage]="errorMessage"></app-form-error-message>
+                    <div class="form-row">
+                        <div class="form-group col-6 mb-3">
+                            <label for="company">Select Insurance Organisation</label>
+                            <div class="w-100">
+                                <app-extended-form-control [formSubmitted]="submitted"
+                                    [inputErrors]="form.controls.company.errors" [errorDefs]="errorDefs['company']">
+                                    <select class="form-control" formControlName="company">
+                                        <option [value]="''">Insurance Organisation</option>
+                                        <option *ngFor="let val of companies" [value]="val._id">{{
+                        val.name
+                      }}</option>
+                                    </select>
+                                </app-extended-form-control>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-6 mb-3">
+                            <label for="medicalUnderWriterCompany">Select Medical Underwriter Company</label>
+                            <div class="w-100">
+                                <app-extended-form-control [formSubmitted]="submitted"
+                                    [inputErrors]="form.controls.medicalUnderWriterCompany.errors"
+                                    [errorDefs]="errorDefs['medicalUnderWriterCompany']">
+                                    <select class="form-control" formControlName="medicalUnderWriterCompany">
+                                        <option [value]="''">Medical Underwriter Company</option>
+                                        <option *ngFor="let val of muwCompanies" [value]="val._id">{{
+                        val.name
+                      }}</option>
+                                    </select>
+                                </app-extended-form-control>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-6 mb-3">
+                            <label for="policyNumber">Policy Number</label>
+                            <div class="w-100">
+                                <app-extended-form-control [formSubmitted]="submitted"
+                                    [inputErrors]="form.controls.policyNumber.errors"
+                                    [errorDefs]="errorDefs['policyNumber']">
+                                    <input id="policyNumber" type="text" class="form-control"
+                                        placeholder="Policy Number" formControlName="policyNumber" />
+                                </app-extended-form-control>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-6 mb-3">
+                            <label for="faceValue">Face Value</label>
+                            <div class="w-100">
+                                <app-extended-form-control [formSubmitted]="submitted"
+                                    [inputErrors]="form.controls.faceValue.errors" [errorDefs]="errorDefs['faceValue']">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend w-100">
+                                            <span class="input-group-text text-dark" id="currency-addon">$</span>
+                                            <input id="faceValue" type="text" class="form-control"
+                                                placeholder="Face Value" formControlName="faceValue" />
+                                        </div>
+                                    </div>
+                                </app-extended-form-control>
+                            </div>
+                        </div>
+                        <div class="form-group col-6 mb-3">
+                            <label for="annualPremium">Annual Premium</label>
+                            <div class="w-100">
+                                <app-extended-form-control [formSubmitted]="submitted"
+                                    [inputErrors]="form.controls.annualPremium.errors"
+                                    [errorDefs]="errorDefs['annualPremium']">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend w-100">
+                                            <span class="input-group-text text-dark" id="currency-addon">$</span>
+                                            <input id="annualPremium" type="text" class="form-control"
+                                                placeholder="Annual Premium" formControlName="annualPremium" />
+                                        </div>
+                                    </div>
+                                </app-extended-form-control>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-6 mb-3">
+                            <label for="cashSurrenderValue">Cash Surrender Value</label>
+                            <div class="w-100">
+                                <app-extended-form-control [formSubmitted]="submitted"
+                                    [inputErrors]="form.controls.cashSurrenderValue.errors"
+                                    [errorDefs]="errorDefs['cashSurrenderValue']">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend w-100">
+                                            <span class="input-group-text text-dark" id="currency-addon">$</span>
+                                            <input id="cashSurrenderValue" type="text" class="form-control"
+                                                placeholder="Cash Surrender Value"
+                                                formControlName="cashSurrenderValue" />
+                                        </div>
+                                    </div>
+                                </app-extended-form-control>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-6 mb-3">
+                            <label for="policyStartDate">Policy Start Date</label>
+                            <div class="w-100">
+                                <app-extended-form-control [formSubmitted]="submitted"
+                                    [inputErrors]="form.controls.policyStartDate.errors"
+                                    [errorDefs]="errorDefs['policyStartDate']">
+                                    <div class="input-group">
+                                        <input [matDatepicker]="picker" [max]="maxDate" id="policyStartDate" type="text"
+                                            class="form-control" placeholder="mm/dd/yyyy"
+                                            formControlName="policyStartDate" />
+                                        <mat-datepicker #picker></mat-datepicker>
+                                        <div class="input-group-append">
+                                            <span class="input-group-text btn" (click)="picker.open()"><i
+                                                    class="fa fa-calendar"></i></span>
+                                        </div>
+                                    </div>
+                                </app-extended-form-control>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-6 mb-3">
+                            <label for="deathBenefit">Death Benefit</label>
+                            <div class="w-100">
+                                <app-extended-form-control [formSubmitted]="submitted"
+                                    [inputErrors]="form.controls.deathBenefit.errors"
+                                    [errorDefs]="errorDefs['deathBenefit']">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend w-100">
+                                            <span class="input-group-text text-dark" id="currency-addon">$</span>
+                                            <input id="deathBenefit" type="text" class="form-control"
+                                                placeholder="Death Benefit" formControlName="deathBenefit" />
+                                        </div>
+                                    </div>
+                                </app-extended-form-control>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-6 mb-3">
+                            <label for="policyDocument">Policy Document</label>
+                            <div class="w-100">
+                                <app-extended-form-control [formSubmitted]="submitted"
+                                    [inputErrors]="form.controls.policyDocument.errors"
+                                    [errorDefs]="errorDefs['policyDocument']">
+                                    <div class="fileUpload form-control">
+                                        <input type="file" (change)="policyFileUpload($event.target.files)"
+                                            formControlName="policyDocument" id="policyDocument" />
+                                    </div>
+                                </app-extended-form-control>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-6 mb-3">
+                            <label for="beneficiary">Beneficiary</label>
+                            <div class="w-100">
+                                <app-extended-form-control [formSubmitted]="submitted"
+                                    [inputErrors]="form.controls.beneficiary.errors"
+                                    [errorDefs]="errorDefs['beneficiary']">
+                                    <input id="beneficiary" type="text" class="form-control" placeholder="Beneficiary"
+                                        formControlName="beneficiary" />
+                                </app-extended-form-control>
+                            </div>
+                        </div>
+
+                        <div *ngIf="userType !== 6" class="form-group col-6 mb-3">
+                            <label>Policy Owner</label>
+                            <div class="w-100">
+                                <app-extended-form-control [formSubmitted]="submitted"
+                                    [inputErrors]="form.controls.isPolicyOwner.errors"
+                                    [errorDefs]="errorDefs['isPolicyOwner']">
+                                    <div *ngFor="let owner of policyOwner"
+                                        class="custom-control custom-radio custom-control-inline">
+                                        <input id="{{ owner.name }}" class="custom-control-input" type="radio"
+                                            [value]="owner.value" name="isPolicyOwner" formControlName="isPolicyOwner"
+                                            (change)="onPolicyOwnerChange()" />
+                                        <label class="custom-control-label" for="{{ owner.name }}">
+                                            {{ owner.name }}
+                                        </label>
+                                    </div>
+                                </app-extended-form-control>
+                            </div>
+                        </div>
+
+                        <ng-container *ngIf="!isPolicyOwner">
+                            <div class="form-group col-6 mb-3">
+                                <label for="policyOwnerName">Owner Name</label>
+                                <div class="w-100">
+                                    <app-extended-form-control [formSubmitted]="submitted"
+                                        [inputErrors]="form.controls.policyOwnerName.errors"
+                                        [errorDefs]="errorDefs['policyOwnerName']">
+                                        <input id="policyOwnerName" type="text" class="form-control"
+                                            placeholder="Owner Name" formControlName="policyOwnerName" />
+                                    </app-extended-form-control>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-6 mb-3">
+                                <label for="policyOwnerDob">Owner DOB</label>
+                                <div class="w-100">
+                                    <app-extended-form-control [formSubmitted]="submitted"
+                                        [inputErrors]="form.controls.policyOwnerDob.errors"
+                                        [errorDefs]="errorDefs['policyOwnerDob']">
+                                        <div class="input-group">
+                                            <input [matDatepicker]="pickerDob"  [max]="maxDate" id="policyOwnerDob" type="text"
+                                                class="form-control" placeholder="mm/dd/yyyy"
+                                                formControlName="policyOwnerDob" />
+                                            <mat-datepicker #pickerDob></mat-datepicker>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text btn" (click)="pickerDob.open()"><i
+                                                        class="fa fa-calendar"></i></span>
+                                            </div>
+                                        </div>
+                                    </app-extended-form-control>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-6 mb-3">
+                                <label for="policyOwnerEmail">Owner Email</label>
+                                <div class="w-100">
+                                    <app-extended-form-control [formSubmitted]="submitted"
+                                        [inputErrors]="form.controls.policyOwnerEmail.errors"
+                                        [errorDefs]="errorDefs['policyOwnerEmail']">
+                                        <input id="policyOwnerEmail" type="text" class="form-control"
+                                            placeholder="Owner Email" formControlName="policyOwnerEmail" />
+                                    </app-extended-form-control>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-6 mb-3">
+                                <label for="ownerKycDocument">Owner KYC Document</label>
+                                <div class="w-100">
+                                    <app-extended-form-control [formSubmitted]="submitted"
+                                        [inputErrors]="form.controls.ownerKycDocument.errors"
+                                        [errorDefs]="errorDefs['ownerKycDocument']">
+                                        <div class="fileUpload form-control">
+                                            <input type="file" (change)="kycFileUpload($event.target.files)"
+                                                formControlName="ownerKycDocument" id="ownerKycDocument" />
+                                        </div>
+                                    </app-extended-form-control>
+                                </div>
+                            </div>
+
+                        </ng-container>
+                    </div>
+                    <div class="form-row">
+                        <div class="col">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fa fa-plus"></i> {{ id ? "Update" : "Add" }}
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

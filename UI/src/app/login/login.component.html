@@ -1,0 +1,34 @@
+<div class="w-100 text-center my-2 px-3">
+  <h1>B-Life</h1>
+  <h4>Blockchain Based Life Settlement Platform</h4>
+</div>
+<form class="row mx-0" [formGroup]="form" (submit)="login()">
+  <div class="col-md-12 my-2">
+    <div class="form-group px-3">
+      <app-extended-form-control [formSubmitted]="submitted" [inputErrors]="form.controls.username.errors"
+        [errorDefs]="errorDefs['username']">
+        <input type="text" class="form-control" placeholder="Email ID" id="email" formControlName="username" />
+      </app-extended-form-control>
+    </div>
+  </div>
+  <div class="col-md-12 my-2">
+    <div class="form-group px-3">
+      <app-extended-form-control [formSubmitted]="submitted" [inputErrors]="form.controls.password.errors"
+        [errorDefs]="errorDefs['password']">
+        <input type="password" class="form-control" placeholder="Password" id="password" formControlName="password" />
+      </app-extended-form-control>
+    </div>
+  </div>
+
+  <div class="col-md-12 px-3" *ngIf="errorMessage">
+    <app-alerts [type]="'error'" [message]="errorMessage"></app-alerts>
+  </div>
+  <div class="col-md-12 pl-5 pr-5 mt-4 p-0">
+    <button class="btn btn-primary btn-block" type="submit">
+      LOGIN
+    </button>
+  </div>
+</form>
+<div class="w-100 text-center my-3">
+  New to B-Life? <button class="btn btn-secondary ml-1" (click)="register()">SignUp</button>
+</div>

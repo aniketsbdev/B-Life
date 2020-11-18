@@ -1,0 +1,144 @@
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active" id="details-tab" data-toggle="tab" href="#details" role="tab" aria-controls="details"
+            aria-selected="true">Policy Details</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="documents-tab" data-toggle="tab" href="#documents" role="tab" aria-controls="documents"
+            aria-selected="false">Policy Documents</a>
+    </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="details" role="tabpanel" aria-labelledby="details-tab">
+        <div class="row m-2">
+            <div class=" col-12 card">
+                <div class="card-header h3 text-center">
+                    Details
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-6 col-xs-12">
+                            <h5 class="bg-light text-center">Status</h5>
+                            <strong>
+                                <p class="text-center">{{ data.statusName }}</p>
+                            </strong>
+                            <hr class="bg-light">
+                        </div>
+                        <div class="col-6 col-xs-12">
+                            <h5 class="bg-light text-center">Policy Number</h5>
+                            <strong>
+                                <p class="text-center">{{ data.policyNumber }}</p>
+                            </strong>
+                            <hr class="bg-light">
+                        </div>
+                        <div *ngIf="data.offerAmount" class="col-6 col-xs-12">
+                            <h5 class="bg-light text-center">Offer Amount</h5>
+                            <strong>
+                                <p class="text-center">$ {{ data.offerAmount }}</p>
+                            </strong>
+                            <hr class="bg-light">
+                        </div>
+                        <div class="col-6 col-xs-12">
+                            <h5 class="bg-light text-center">Insurance Company</h5>
+                            <strong>
+                                <p class="text-center">{{ companyDetails }}</p>
+                            </strong>
+                            <hr class="bg-light">
+                        </div>
+                        <div class="col-6 col-xs-12">
+                            <h5 class="bg-light text-center">Medical Underwriter Company</h5>
+                            <strong>
+                                <p class="text-center">{{ muwCompanyDetails }}</p>
+                            </strong>
+                            <hr class="bg-light">
+                        </div>
+                        <div class="col-6 col-xs-12">
+                            <h5 class="bg-light text-center">Face Value</h5>
+                            <strong>
+                                <p class="text-center">$ {{ data.faceValue }}</p>
+                            </strong>
+                            <hr class="bg-light">
+                        </div>
+                        <div class="col-6 col-xs-12">
+                            <h5 class="bg-light text-center">Annual Premium</h5>
+                            <strong>
+                                <p class="text-center">$ {{ data.annualPremium }}</p>
+                            </strong>
+                            <hr class="bg-light">
+                        </div>
+                        <div class="col-6 col-xs-12">
+                            <h5 class="bg-light text-center">Cash Surrender Value</h5>
+                            <strong>
+                                <p class="text-center">$ {{ data.cashSurrenderValue }}</p>
+                            </strong>
+                            <hr class="bg-light">
+                        </div>
+                        <div class="col-6 col-xs-12">
+                            <h5 class="bg-light text-center">Policy Start Date</h5>
+                            <strong>
+                                <p class="text-center">{{ data.policyStartDate | date: 'MM/dd/yyyy' }}</p>
+                            </strong>
+                            <hr class="bg-light">
+                        </div>
+                        <div class="col-6 col-xs-12">
+                            <h5 class="bg-light text-center">Death Benefit</h5>
+                            <strong>
+                                <p class="text-center">$ {{ data.deathBenefit }}</p>
+                            </strong>
+                            <hr class="bg-light">
+                        </div>
+                        <div class="col-6 col-xs-12">
+                            <h5 class="bg-light text-center">Beneficiary</h5>
+                            <strong>
+                                <p class="text-center">{{ data.beneficiary }}</p>
+                            </strong>
+                            <hr class="bg-light">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="documents" role="tabpanel" aria-labelledby="documents-tab">
+        <div class="row mt-4">
+            <div class="col-6 mb-2">
+                <h5 class="bg-light text-center">Owner KYC Document</h5>
+                <span class="offset-6">
+                    <a (click)="downloadPolicyDocument('ownerKycDocument')" title="Download KYC Document">
+                        <i class="fa fa-download"></i>
+                    </a>
+                </span>
+            </div>
+            <div class="col-6 mb-2">
+                <h5 class="bg-light text-center">Original Policy Document</h5>
+                <span class="offset-6">
+                    <a (click)="downloadPolicyDocument('policyDocument')" title="Download Original Policy">
+                        <i class="fa fa-download"></i>
+                    </a>
+                </span>
+            </div>
+            <div *ngIf="data.medicalDocument" class="col-6 mb-2">
+                <h5 class="bg-light text-center">LE Report</h5>
+                <span class="offset-6">
+                    <a (click)="downloadPolicyDocument('leReport')" title="Download Medical LE Report">
+                        <i class="fa fa-download"></i>
+                    </a>
+                </span>
+            </div>
+            <div *ngIf="data.updatedPolicyDocument" class="col-6 mb-2">
+                <h5 class="bg-light text-center">Updated Policy Document</h5>
+                <span class="offset-6">
+                    <a (click)="downloadPolicyDocument('updatedPolicyDocument')"
+                        title="Download Updated Policy Document">
+                        <i class="fa fa-download"></i>
+                    </a>
+                </span>
+            </div>
+            <!-- <div class="col" *ngIf="data.medicalDocument !== ''"><button class="btn btn-primary"
+                    (click)="downloadPolicyDocument('medicalDocument')">Download Policy Medical Document</button></div> -->
+            <!-- <div class="col" *ngIf="data.medicalDocument !== ''"><button class="btn btn-primary"
+                    (click)="downloadPolicyDocument('leReport')">Download LE Report</button></div> -->
+        </div>
+    </div>
+</div>
