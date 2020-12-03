@@ -4,7 +4,7 @@
       <app-extended-form-control [formSubmitted]="submitted" [inputErrors]="form.controls.query.errors"
         [errorDefs]="errorDefs['query']">
         <div class="row">
-          <div class="col-9 col-xs-12">
+          <div class="col-10 col-xs-12">
             <div class="input-group">
               <input type="text" id="query" placeholder="Search" class="form-control" formControlName="query" />
               <div class="search-icon">
@@ -14,7 +14,7 @@
               </div>
             </div>
           </div>
-          <div class="col-3 col-xs-12">
+          <div class="col-2 col-xs-12">
             <button type="button" (click)="searchResults(true)" class="btn btn-danger">
               <i class="fa fa-times round"></i>
             </button>

@@ -22,3 +22,11 @@ th {
 span a {
   color: #1248eb !important;
 }
+
+.card-header {
+	background:none;
+	border:0px;
+}
+.card-body{
+	padding-top: 0px;
+}

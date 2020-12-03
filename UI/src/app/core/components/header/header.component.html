@@ -3,9 +3,9 @@
 
   <!-- Sidebar Toggle (Topbar) -->
   <button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3" (click)="toggleSideNav()">
-    <i class="fa fa-bars"></i>
+    <img src="../../../../assets/img/brand/burger.png">
   </button>
-
+<span class="titlePage">Dashboard</span>
   <!-- Topbar Search -->
   <!-- <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
     <div class="input-group">
@@ -45,7 +45,7 @@
     <li class="nav-item dropdown no-arrow mx-1">
       <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown"
         aria-haspopup="true" aria-expanded="false">
-        <i class="fa fa-bell fa-2x"></i>
+        <i class="fa fa-bell fa-2x bellTop"></i>
         <span class="badge badge-danger badge-counter large-badge">3+</span>
       </a>
       <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -96,8 +96,8 @@
     <li class="nav-item dropdown no-arrow">
       <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
         aria-haspopup="true" aria-expanded="false">
-        <span class="mr-2 d-none d-lg-inline text-gray-800 small">{{ user?.fullName }} ( {{ user?.userTypeName }}
-          )</span>
+        <span class="mr-2 d-none d-lg-inline text-gray-800 small userinfos">{{ user?.fullName }} <span> {{ user?.userTypeName }}
+          </span></span>
         <img class="img-profile rounded-circle" [src]="imageurl">
       </a>
       <!-- Dropdown - User Information -->

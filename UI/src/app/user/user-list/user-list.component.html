@@ -1,7 +1,7 @@
 <div class="row mb-2">
 
     <div class="col-xl-4 col-md-6 mb-4">
-        <div class="card border-left-primary shadow h-100 py-2">
+        <div class="card border-left-primary shadow h-100 py-2 cardDashboard">
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
@@ -13,7 +13,9 @@
                         </div>
                     </div>
                     <div class="col-auto">
-                        <i class="fa fa-users fa-2x text-gray-300"></i>
+                        <span class="spanUser">
+                            <i class="fa fa-users fa-2x"></i>
+                        </span>
                     </div>
                 </div>
             </div>
@@ -22,7 +24,7 @@
 
     <!-- Earnings (Monthly) Card Example -->
     <div class="col-xl-4 col-md-6 mb-4">
-        <div class="card border-left-primary shadow h-100 py-2">
+        <div class="card border-left-primary cardDashboard shadow h-100 py-2">
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
@@ -34,7 +36,9 @@
                         </div>
                     </div>
                     <div class="col-auto">
-                        <i class="fa fa-id-card-o fa-2x text-gray-300"></i>
+                        <span class="spanCard">
+                            <i class="fa fa-id-card-o fa-2x"></i>
+                        </span>
                     </div>
                 </div>
             </div>
@@ -43,7 +47,7 @@
 
     <!-- Earnings (Monthly) Card Example -->
     <div class="col-xl-4 col-md-6 mb-4">
-        <div class="card border-left-primary shadow h-100 py-2">
+        <div class="card border-left-primary cardDashboard shadow h-100 py-2">
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
@@ -55,7 +59,9 @@
                         </div>
                     </div>
                     <div class="col-auto">
-                        <i class="fa fa-files-o fa-2x text-gray-300"></i>
+                        <span class="spanFiles">
+                            <i class="fa fa-files-o fa-2x"></i>
+                        </span>
                     </div>
                 </div>
             </div>
@@ -66,7 +72,7 @@
 
 <div class="row">
     <div class="col-12 col-xs-12">
-        <button class="btn btn-primary float-right" (click)="addNewUser()">Add User</button>
+        <button class="btn btn-primary btnprimer float-right" (click)="addNewUser()">Add User</button>
     </div>
 </div>
 
@@ -85,7 +91,7 @@
                 </div>
             </div>
             <div class="card-body" *ngIf="users && users.length > 0; else noDataFound">
-                <div class="table-responsive mb-3 mt-3">
+                <div class="table-responsive mb-3 mt-3 tableround">
                     <!-- TABLE  -->
                     <table class="table tableTheme table-bordered">
                         <thead class="table-primary text-dark">
@@ -102,17 +108,17 @@
                         <tbody>
                             <tr *ngFor="let user of users">
                                 <td>{{ user.name }}</td>
-                                <td>{{ user.userTypeName }}</td>
+                                <td class="usertypes {{ user.userTypeName }}">{{ user.userTypeName }}</td>
                                 <td>{{ user.state }}</td>
                                 <td>{{ user.contactNumber }}</td>
                                 <td>{{ user.email }}</td>
-                                <td>
+                                <td class="dwldDoc">
                                     <span  *ngIf="user.userType == 5 || user.userType == 6">
                                         <a (click)="downloadKycDocument(user._id, 'kycDocument')"
                                             title="Download Document">ID Proof</a>
                                     </span>
                                 </td>
-                                <td><a (click)="goToEditUser(user)" title="Edit User">
+                                <td class="editUsers"><a (click)="goToEditUser(user)" title="Edit User">
                                         <i class="fa fa-edit"></i>
                                     </a></td>
                             </tr>

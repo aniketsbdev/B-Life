@@ -3,7 +3,7 @@
         <app-page-heading [title]="'Organisations List'"></app-page-heading>
     </div> -->
     <div class="col-12 col-xs-12 mb-2">
-        <button class="btn btn-primary float-right" (click)="addNewCompany()">Add Organisation</button>
+        <button class="btn btn-primary btnprimer float-right" (click)="addNewCompany()">Add Organisation</button>
     </div>
 </div>
 
@@ -22,7 +22,7 @@
                 </div>
             </div>
             <div class="card-body" *ngIf="companies && companies.length > 0; else noDataFound">
-                <div class="table-responsive mb-3 mt-3">
+                <div class="table-responsive mb-3 mt-3 tableround">
                     <!-- TABLE  -->
                     <table class="table tableTheme table-bordered">
                         <thead class="table-primary text-dark">

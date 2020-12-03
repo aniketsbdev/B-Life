@@ -1,6 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 @import "./assets/css/sb-admin-2.min.css";
-
+body{
+  font-family: 'Open Sans', sans-serif;
+}
 .has-error .invalid-feedback {
   display: block;
 }
@@ -73,7 +75,7 @@ a {
 
 body {
   background-color: #F0F0F0;
-  font-family: 'Helvetica' !important;
+  font-family: 'Open Sans', sans-serif !important;
   font-size: .8125rem !important;
   font-weight: 400 !important;
   }
@@ -92,4 +94,171 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+.topbar #sidebarToggleTop:hover{
+  background: none !important;
+  border: none !important;
+}
+button#sidebarToggleTop {
+  border: 0px !important;
+  width: auto !important;
+  background: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+@media (min-width: 768px){
+.sidebar {
+    width: 17rem!important;
+}
+.sidebar .nav-item .nav-link{
+  padding:11px 1rem;
+}
+.sidebar .nav-item .nav-link{
+  width: 100%;
+}
+}
+.sidebar-brand-image.text-dark.mx-3 {
+  margin: 0px !important;
+  width: 100%;
+  margin-left: 0px !important;
+}
+.spanUser i, .spanCard i, .spanFiles i{
+  display: block;
+  margin: 0 auto;
+}
+.spanUser{
+  background-color:#f9e9bf;
+  color: #de9200;
+  display: inline-block;
+  padding: 8px;
+  border-radius: 100px;
+  position: absolute;
+  right: 0px;
+  height: 60px;
+  width: 60px;
+  top: 50%;
+  margin-top: -20px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+.spanCard{
+  background-color:#e7edff;
+  color: #3969ff;
+  display: inline-block;
+  padding: 8px;
+  border-radius: 100px;
+  position: absolute;
+  right: 0px;
+  height: 60px;
+  width: 60px;
+  top: 50%;
+  margin-top: -20px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+.spanFiles{
+  background-color:#dcfaf8;
+  color: #16dbcb;
+  display: inline-block;
+  padding: 8px;
+  border-radius: 100px;
+  position: absolute;
+  right: 0px;
+  height: 60px;
+  width: 60px;
+  top: 50%;
+  margin-top: -20px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+.sidebar .sidebar-brand{
+  text-align: left !important;
+}
+.prs-2{
+  padding-right: 1.8rem !important;
+}
+
+.btnprimer.btn-primary {
+    color: #fff;
+    background-color: #023b59;
+    border-color: #013a58;
+    font-size: 14px;
+}
+.table thead th{
+  background: #eef5ff;
+  border-color: #cee2ff;
+  border-bottom: 0px;
+  font-size: 13px;
+}
+.tableround{
+  border-radius: 10px;
+}
+.text-dark {
+    color: #013759!important;
+}
+.cardDashboard .text-gray-600 {
+    font-size: 15px !important;
+    text-transform: inherit !important;
+    color: #023b59 !important;
+}
+td.usertypes{
+  color: #485082;
+}
+td.Medical.Underwriter {
+    color: #16b54e;
+}
+td.Insurer{
+  color: #ba78f7;
+}
+td.LSP{
+  color: #efae4c;
+}
+td.Broker{
+  color: #823954;
+}
+td.Admin{
+  color: #4e73df;
+}
+td.editUsers {
+    text-align: center;
+    font-size: 16px;
+}
+td.editUsers a{
+  color: #013d5f !important;
+}
+td.dwldDoc{
+  text-align: center;
+}
+td.dwldDoc a{
+  text-decoration: underline;
+}
+.page-item.active .page-link {
+    background-color: #013d5f;
+    border-color: #013d5f;
+}
+.sidebar-dark .nav-item.active .nav-link i {
+    color: #4e73df !important;
+}
+.userinfos {
+    font-size: 14px;
+    color: #023b59 !important;
+    font-weight: 600;
+}
+.userinfos span{
+  display: block;
+  font-size: 12px;
+  font-weight: normal;
+  color: #4e73df;
+}
+.bellTop{
+  color: #4e73df;
+}
+.titlePage{
+  font-size: 20px;
+  color: #003a54;
+  font-weight: 600;
 }

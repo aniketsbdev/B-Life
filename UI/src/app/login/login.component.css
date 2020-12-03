@@ -1,0 +1,32 @@
+h4{
+	font-size: 14px;
+	margin-bottom: 30px;
+	    color: #333;
+}
+form {
+    padding-bottom: 30px !important;
+}
+.form-control {
+    height: 50px;
+    font-size: 18px;
+}
+span.signupbutton {
+    color: #2e59d9;
+    cursor: pointer;
+    text-decoration: underline;
+    font-weight: 700;
+}
+.newBlife {
+    font-size: 16px;
+    text-align: left !important;
+    padding-left: 2rem;
+    line-height: 3;
+    color: #484848;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #013d62;
+    border-color: #013d62;
+    font-weight: 600;
+    line-height: 2;
+}

@@ -1,5 +1,5 @@
 <div class="w-100 text-center my-2 px-3">
-  <h1>B-Life</h1>
+  <h1><img src="../../../../assets/img/brand/logoBlife.jpg" class="img-fluid" alt="Responsive image"></h1>
   <h4>Blockchain Based Life Settlement Platform</h4>
 </div>
 <form class="row mx-0" [formGroup]="form" (submit)="login()">
@@ -23,12 +23,12 @@
   <div class="col-md-12 px-3" *ngIf="errorMessage">
     <app-alerts [type]="'error'" [message]="errorMessage"></app-alerts>
   </div>
-  <div class="col-md-12 pl-5 pr-5 mt-4 p-0">
+  <div class="col-md-6 w-100 text-center newBlife">
+  New to B-Life? <span class="signupbutton" (click)="register()">SignUp</span>
+</div>
+  <div class="col-md-6 prs-2 p-0">
     <button class="btn btn-primary btn-block" type="submit">
       LOGIN
     </button>
   </div>
 </form>
-<div class="w-100 text-center my-3">
-  New to B-Life? <button class="btn btn-secondary ml-1" (click)="register()">SignUp</button>
-</div>

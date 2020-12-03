@@ -1,11 +1,23 @@
 .search-icon{
-  position: absolute;
-  top: 0px;
-  right: 10px;
+      position: absolute;
+    top: 0px;
+    right: 0px;
+    background: #013d5f;
+    color: #fff;
+    border-radius:0px 10px 10px 0px;
+}
+.search-icon i{
+	color:#fff;
 }
 .refresh-search{
   float: right;
 }
 .btn:focus, .btn-primary:focus {
   box-shadow: none!important;
+}
+.form-group {
+    margin-bottom: 0rem;
+}
+#query{
+	border-radius: 10px;
 }
